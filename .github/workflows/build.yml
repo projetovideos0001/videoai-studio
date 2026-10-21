@@ -1,0 +1,29 @@
+name: Verificar compilação
+
+on:
+  push:
+    branches:
+      - main
+      - chore/ci-upload-validation
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build do VideoAI Studio
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar código
+        uses: actions/checkout@v4
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Instalar dependências
+        run: npm install
+      - name: Verificar TypeScript e compilar
+        run: npm run build
