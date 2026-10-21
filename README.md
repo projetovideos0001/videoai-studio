@@ -3,7 +3,7 @@
 Interface inicial para uma aplicação web de geração de vídeos por IA a partir de prompts.
 
 ## Estado atual
-A interface contém controles de prompt, formato, duração e estilo. **A geração real ainda não está conectada**; o botão não chama APIs pagas nem cria um arquivo de vídeo.
+A tela Criar vídeo permite selecionar até 5 imagens (PNG, JPG/JPEG, WEBP ou GIF) e PDFs de até 10 MB cada. Neste estágio, os anexos ficam apenas na sessão do navegador: **ainda não são enviados para armazenamento nem encaminhados ao provedor de vídeo**. A leitura/extracção de texto de PDFs e a geração real de vídeo pelo app ainda não estão conectadas.
 
 ## Executar localmente
 Requer Node.js 20 ou compatível com Vite 6.
@@ -14,12 +14,15 @@ npm run dev
 npm run build
 ```
 
+## Verificação automática
+O GitHub Actions executa `npm run build` em pushes para a branch principal e em pull requests destinados a `main`, para detectar erros de TypeScript e compilação antes da integração.
+
 ## Próximas etapas
-1. Conectar o repositório ao Lovable.
-2. Escolher um provedor de vídeo com API, comparando preço, duração, formatos e disponibilidade.
-3. Implementar backend para iniciar geração e consultar status.
-4. Guardar chaves de API apenas como secrets no backend.
-5. Armazenar vídeos em bucket privado e gerar links de download seguros.
+1. Configurar um backend e armazenamento privado para os anexos.
+2. Enviar os arquivos para armazenamento com validação no servidor e regras de acesso.
+3. Extrair texto dos PDFs no backend, quando necessário, e preparar imagens para o provedor.
+4. Conectar o backend ao provedor de geração de vídeo.
+5. Guardar vídeos em bucket privado e gerar links de download seguros.
 6. Exibir limites/custos antes de iniciar tarefas pagas.
 
 ## Arquitetura recomendada
@@ -28,4 +31,4 @@ npm run build
 - Provedor de vídeo: adaptador no backend.
 - Armazenamento: bucket privado com links temporários.
 
-A duração e os formatos reais dependerão do provedor escolhido.
+A duração e os formatos reais dependerão do provedor escolhido. Não coloque chaves de API no frontend.
