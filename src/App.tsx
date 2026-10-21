@@ -1,5 +1,5 @@
 import {useRef,useState} from "react";
-import {Clapperboard,WandSparkles,Smartphone,MonitorPlay,Clock3,Download,Sparkles,Plus,AlertCircle,CheckCircle2,Play,Upload,ImagePlus,FileText,X,File} from "lucide-react";
+import {Clapperboard,WandSparkles,Smartphone,MonitorPlay,Clock3,Download,Sparkles,Plus,AlertCircle,CheckCircle2,Play,Upload,FileText,X} from "lucide-react";
 
 type Attachment={id:string;file:File;url?:string};
 const MAX_FILES=5, MAX_SIZE=10*1024*1024;
